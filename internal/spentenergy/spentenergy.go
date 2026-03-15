@@ -27,7 +27,7 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 	// Разделите результат на число минут в часе для получения количества потраченных калорий.
 	// Умножить полученное число калорий на корректирующий коэффициент walkingCaloriesCoefficient.
 	// Соответствующая константа объявлена в пакете. Вернуть полученное значение.
-	return ((duration.Minutes() * height * speed) / minInH) * walkingCaloriesCoefficient, nil
+	return ((duration.Minutes() * weight * speed) / minInH) * walkingCaloriesCoefficient, nil
 }
 
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
@@ -49,7 +49,7 @@ func RunningSpentCalories(steps int, weight, height float64, duration time.Durat
 func MeanSpeed(steps int, height float64, duration time.Duration) float64 {
 	// TODO: реализовать функцию
 	// Проверить, что продолжительность duration больше 0. Если это не так, вернуть 0.
-	if duration <= 0 && steps <= 0 {
+	if duration <= 0 || steps <= 0 {
 		return 0
 	}
 	// Вычислить дистанцию с помощью Distance().
