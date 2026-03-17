@@ -54,7 +54,7 @@ func main() {
 
 	fmt.Println("Журнал тренировок")
 
-	trains.Personal.Print()
+	trains.Print()
 
 	actioninfo.Info(actions, &trains)
 }

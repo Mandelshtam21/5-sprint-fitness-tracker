@@ -21,14 +21,14 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	// TODO: реализовать функцию
 	parts := strings.Split(datastring, ",")
 	if len(parts) != 2 {
-		return fmt.Errorf("Неверный формат данных")
+		return fmt.Errorf("invalid data format")
 	}
 	steps, err := strconv.Atoi(parts[0])
 	if err != nil {
 		return err
 	}
 	if steps <= 0 {
-		return fmt.Errorf("Количество шагов должно быть больше 0")
+		return fmt.Errorf("count of steps must be more than 0")
 	}
 	ds.Steps = steps
 	duration, err := time.ParseDuration(parts[1])
@@ -36,7 +36,7 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 		return err
 	}
 	if duration <= 0 {
-		return fmt.Errorf("Продолжительность должна быть больше 0")
+		return fmt.Errorf("duration must be more than 0")
 	}
 	ds.Duration = duration
 	return nil

@@ -16,8 +16,17 @@ const (
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	// TODO: реализовать функцию
 	// Проверить входные параметры на корректность. Если параметры некорректны, вернуть 0 калорий и соответствующую ошибку.
-	if steps <= 0 || weight <= 0 || height <= 0 || duration <= 0 {
-		return 0, fmt.Errorf("Некорректные входные параметры")
+	if steps <= 0 { // || weight <= 0 || height <= 0 || duration <= 0 {
+		return 0, fmt.Errorf("steps must be more than 0")
+	}
+	if weight <= 0 {
+		return 0, fmt.Errorf("weight must be more than 0")
+	}
+	if height <= 0 {
+		return 0, fmt.Errorf("height must be more than 0")
+	}
+	if duration <= 0 {
+		return 0, fmt.Errorf("duration must be more than 0")
 	}
 	// Рассчитать среднюю скорость с помощью meanSpeed().
 	speed := MeanSpeed(steps, height, duration)
@@ -33,8 +42,17 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	// TODO: реализовать функцию
 	// Проверить входные параметры на корректность. Если параметры некорректны, вернуть 0 калорий и соответствующую ошибку.
-	if steps <= 0 || weight <= 0 || height <= 0 || duration <= 0 {
-		return 0, fmt.Errorf("Некорректные входные параметры")
+	if steps <= 0 { // || weight <= 0 || height <= 0 || duration <= 0 {
+		return 0, fmt.Errorf("steps must be more than 0")
+	}
+	if weight <= 0 {
+		return 0, fmt.Errorf("weight must be more than 0")
+	}
+	if height <= 0 {
+		return 0, fmt.Errorf("height must be more than 0")
+	}
+	if duration <= 0 {
+		return 0, fmt.Errorf("duration must be more than 0")
 	}
 	// Рассчитать среднюю скорость с помощью meanSpeed().
 	speed := MeanSpeed(steps, height, duration)

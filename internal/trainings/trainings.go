@@ -12,10 +12,10 @@ import (
 
 type Training struct {
 	// TODO: добавить поля
-	Steps        int                   // количество шагов, проделанных за тренировку.
-	TrainingType string                // тип тренировки(бег или ходьба).
-	Duration     time.Duration         // длительность тренировки.
-	Personal     personaldata.Personal // встроенная структура Personal из пакета personaldata, у которой есть метод Print().
+	Steps                 int           // количество шагов, проделанных за тренировку.
+	TrainingType          string        // тип тренировки(бег или ходьба).
+	Duration              time.Duration // длительность тренировки.
+	personaldata.Personal               // встроенная структура Personal из пакета personaldata, у которой есть метод Print().
 }
 
 func (t *Training) Parse(datastring string) (err error) {
@@ -66,18 +66,19 @@ func (t Training) ActionInfo() (string, error) {
 	// Для каждого из видов тренировок рассчитать калории, используя функцию из пакета spentenergy.
 	var calories float64
 	var err error
-	if t.TrainingType == "Ходьба" {
+	switch t.TrainingType {
+	case "Ходьба":
 		calories, err = spentenergy.WalkingSpentCalories(t.Steps, t.Personal.Weight, t.Personal.Height, t.Duration)
-		if err != nil {
-			return "", err
-		}
-	} else if t.TrainingType == "Бег" {
+
+	case "Бег":
 		calories, err = spentenergy.RunningSpentCalories(t.Steps, t.Personal.Weight, t.Personal.Height, t.Duration)
-		if err != nil {
-			return "", err
-		}
-	} else {
+
+	default:
 		return "", fmt.Errorf("Неизвестный тип тренировки")
+	}
+
+	if err != nil {
+		return "", err
 	}
 	// Сформируйте и верните строку, образец которой был выше.
 	// Если был передан неизвестный тип тренировки, верните ошибку с текстом неизвестный тип тренировки.

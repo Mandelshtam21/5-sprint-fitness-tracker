@@ -25,12 +25,13 @@ func Info(dataset []string, dp DataParser) {
 			log.Println(err)
 			continue
 		}
+		// Сформировать и вывести строку с информацией об активности с помощью метода ActionInfo(). При возникновении ошибки ее нужно залогировать.
+		info, err := dp.ActionInfo()
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		log.Println(info)
 	}
-	// Сформировать и вывести строку с информацией об активности с помощью метода ActionInfo(). При возникновении ошибки ее нужно залогировать.
-	info, err := dp.ActionInfo()
-	if err != nil {
-		log.Println(err)
-		return
-	}
-	log.Println(info)
+
 }
